@@ -1,5 +1,7 @@
+import { motion } from "framer-motion";
+
 interface CardProps {
-  icon: string;
+  icon: React.ReactNode;
   title: string;
   description: string;
   buttonText?: string;
@@ -8,13 +10,20 @@ interface CardProps {
 
 export function Card({ icon, title, description, buttonText = "Más información", onButtonClick }: CardProps) {
   return (
-    <div className="card">
+    <motion.div 
+      className="card"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      whileHover={{ scale: 1.03 }}
+    >
       <div className="card-icon">{icon}</div>
       <h3 className="card-title">{title}</h3>
       <p className="card-description">{description}</p>
       <button className="card-button" onClick={onButtonClick}>
         {buttonText}
       </button>
-    </div>
+    </motion.div>
   );
 }

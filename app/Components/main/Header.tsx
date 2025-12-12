@@ -1,24 +1,34 @@
+import { HeroContent } from "../header/HeroContent";
+import { Button } from "../form/Button";
+import { motion } from "framer-motion";
+import { FaShippingFast, FaShieldAlt } from "react-icons/fa";
+
 export function Header() {
   return (
     <header className="header" id="inicio">
-      <div className="header-container">
-        <div className="header-image">
-          <img 
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcST7-iLox63enhLWFFONtD5TVQIPC9gCoQ60Q&s" 
-            alt="Compras Online" 
-          />
-        </div>
-        <div className="header-content">
-          <h1>Tu mejor Lugar de compras</h1>
-          <p>
-            Encuentra los mejores productos al mejor precio. Calidad garantizada y envío rápido a todo el país.
-          </p>
-          <div className="header-buttons">
-            <button className="btn-primary">Explorar Productos</button>
-            <button className="btn-secondary">Conocer Más</button>
+      <div className="header-overlay"></div>
+      <motion.div 
+        className="header-container"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <h1>Tu mejor Lugar de compras</h1>
+        <p>Calidad garantizada y envío rápido</p>
+        
+        <div className="header-features">
+          <div className="header-feature-item">
+            <FaShippingFast className="header-feature-icon" />
+            <span>Envío Gratis</span>
+          </div>
+          <div className="header-feature-item">
+            <FaShieldAlt className="header-feature-icon" />
+            <span>Compra Segura</span>
           </div>
         </div>
-      </div>
+
+        <Button variant="primary">Explorar Productos</Button>
+      </motion.div>
     </header>
   );
 }

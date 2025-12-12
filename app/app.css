@@ -13,31 +13,103 @@ body {
 }
 
 .navbar {
-  @apply text-white bg-indigo-800 px-6 py-5 shadow-lg sticky top-0 z-50;
+  @apply text-gray-800 dark:text-white bg-white dark:bg-indigo-800 px-6 py-5 shadow-lg sticky top-0 z-50 border-b border-gray-200 dark:border-transparent transition-colors duration-300;
 }
 
 .navbar-container {
-  @apply flex justify-center items-center max-w-7xl mx-auto;
+  @apply flex justify-between items-center max-w-7xl mx-auto relative;
 }
 
-.navbar-container ul {
+/* Logo y nombre de la tienda */
+.navbar-brand {
+  @apply flex items-center gap-3 z-50;
+}
+
+.navbar-logo {
+  @apply text-2xl w-11 h-11 flex items-center justify-center bg-indigo-600 dark:bg-indigo-500 text-white rounded-lg hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-all duration-300 shadow-md;
+}
+
+.navbar-title {
+  @apply text-2xl font-bold tracking-wide text-indigo-800 dark:text-white;
+}
+
+/* Botón hamburguesa */
+.hamburger-button {
+  @apply flex flex-col gap-1.5 z-50 bg-transparent border-0 cursor-pointer p-2 rounded-lg hover:bg-indigo-100 dark:hover:bg-white/10 transition-colors;
+}
+
+.hamburger-line {
+  @apply w-7 h-0.5 bg-indigo-800 dark:bg-white transition-all duration-300;
+}
+
+.hamburger-line.open:nth-child(1) {
+  @apply rotate-45 translate-y-2;
+  transform: rotate(45deg) translateY(8px);
+}
+
+.hamburger-line.open:nth-child(2) {
+  @apply opacity-0 scale-0;
+}
+
+.hamburger-line.open:nth-child(3) {
+  @apply -rotate-45 -translate-y-2;
+  transform: rotate(-45deg) translateY(-8px);
+}
+
+/* Menú de navegación */
+.navbar-menu {
   @apply flex gap-2 list-none m-0 p-0;
+  @apply hidden flex-col absolute top-full left-0 right-0;
+  @apply bg-black/90 backdrop-blur-sm shadow-lg border-t border-white/10;
+  @apply py-4;
+}
+
+.navbar-menu.active {
+  @apply flex;
 }
 
 .navbaritem {
-  @apply font-semibold text-sm tracking-wide;
+  @apply font-semibold text-sm tracking-wide w-full text-center;
 }
 
 .navbar-link {
-  @apply text-white hover:text-indigo-200 px-4 py-2 rounded-lg hover:bg-indigo-700 inline-block;
+  @apply text-white hover:text-indigo-300 px-4 py-2 rounded-lg hover:bg-white/10 transition-colors block;
+  @apply flex items-center gap-2;
+}
+
+.navbar-link-icon {
+  @apply text-lg;
 }
 
 .header {
-  @apply bg-gradient-to-r from-gray-900 via-indigo-950 to-gray-900 text-white min-h-screen flex items-center;
+  @apply text-white min-h-[40vh] flex items-center transition-colors duration-300 relative overflow-hidden;
+  background-image: url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1600&q=80');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.header-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.9) 0%, rgba(139, 92, 246, 0.85) 50%, rgba(79, 70, 229, 0.9) 100%);
+  z-index: 1;
 }
 
 .header-container {
-  @apply flex flex-col md:flex-row items-center justify-between gap-12 max-w-7xl mx-auto px-6 py-20 w-full;
+  @apply flex flex-col items-center justify-center gap-4 max-w-4xl mx-auto px-6 py-10 w-full relative z-10 text-center;
+}
+
+.header-features {
+  @apply flex flex-wrap justify-center gap-4 my-3;
+}
+
+.header-feature-item {
+  @apply flex items-center gap-2 text-white bg-white/15 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 text-sm;
+}
+
+.header-feature-icon {
+  @apply text-lg text-white;
 }
 
 .header-image {
@@ -45,7 +117,8 @@ body {
 }
 
 .header-image img {
-  @apply w-full max-w-md rounded-3xl shadow-2xl shadow-indigo-500/30 hover:scale-105 transition-transform duration-500 border-4 border-indigo-500/30;
+  @apply w-full h-auto max-w-xl rounded-3xl shadow-2xl shadow-indigo-500/30 hover:scale-105 transition-transform duration-500 border-4 border-indigo-500/30 object-cover;
+  aspect-ratio: 1/1;
 }
 
 .header-content {
@@ -53,24 +126,26 @@ body {
 }
 
 .header h1 {
-  @apply text-4xl md:text-6xl font-bold mb-6 leading-tight bg-gradient-to-r from-white via-indigo-200 to-purple-300 bg-clip-text text-transparent;
+  @apply text-3xl md:text-4xl font-bold mb-2 leading-tight text-white;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 
 .header p {
-  @apply text-lg md:text-xl text-indigo-200 leading-relaxed mb-8;
+  @apply text-sm md:text-base text-white/90 leading-relaxed mb-3;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
 }
 
 
 section {
-  @apply py-20 px-5 text-white;
+  @apply py-20 px-5 text-gray-900 dark:text-white transition-colors duration-300;
 }
 
 .section-titulo {
-  @apply text-4xl font-bold mb-4 text-center bg-gradient-to-r from-white to-indigo-300 bg-clip-text text-transparent;
+  @apply text-4xl font-bold mb-4 text-center bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-white dark:to-indigo-300 bg-clip-text text-transparent;
 }
 
 .section-intro {
-  @apply text-center mb-16 text-indigo-200 text-lg max-w-3xl mx-auto;
+  @apply text-center mb-16 text-gray-600 dark:text-indigo-200 text-lg max-w-3xl mx-auto;
 }
 
 /* Cards Grid */
@@ -79,28 +154,32 @@ section {
 }
 
 .card {
-  @apply bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-2xl p-8 transition-all duration-300 hover:scale-105 hover:shadow-indigo-500/50 border border-gray-700 hover:border-indigo-500;
+  @apply relative bg-gradient-to-br from-white via-indigo-50/30 to-purple-50/30 dark:from-gray-800 dark:via-indigo-900/20 dark:to-purple-900/20 rounded-3xl shadow-xl p-8 transition-all duration-500 hover:scale-[1.03] hover:shadow-2xl border-2 border-gray-200/50 dark:border-gray-700/50 hover:border-indigo-400 dark:hover:border-indigo-500 backdrop-blur-sm;
+  @apply before:absolute before:inset-0 before:rounded-3xl before:bg-gradient-to-br before:from-indigo-500/0 before:to-purple-500/0 hover:before:from-indigo-500/10 hover:before:to-purple-500/10 before:transition-all before:duration-500;
 }
 
 .card-icon {
-  @apply text-6xl mb-6 text-center;
+  @apply text-7xl mb-6 text-center text-indigo-600 dark:text-indigo-400 transform transition-all duration-500 hover:scale-110 hover:rotate-6;
+  filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.3));
 }
 
 .card-title {
-  @apply text-2xl font-bold mb-4 text-white;
+  @apply text-2xl font-bold mb-4 text-gray-900 dark:text-white relative z-10;
+  @apply bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent;
 }
 
 .card-description {
-  @apply text-indigo-200 mb-6 leading-relaxed;
+  @apply text-gray-700 dark:text-gray-300 mb-6 leading-relaxed relative z-10 text-base;
 }
 
 .card-button {
-  @apply bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/50 w-full;
+  @apply relative z-10 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/50 w-full;
+  @apply transform hover:-translate-y-1 active:translate-y-0;
 }
 
 /* Sección de Contacto */
 .contact-section {
-  @apply py-20 px-5 text-white bg-gradient-to-b from-gray-950 to-gray-900;
+  @apply py-20 px-5 text-gray-900 dark:text-white bg-gradient-to-b from-gray-50 to-white dark:from-gray-950 dark:to-gray-900 transition-colors duration-300;
 }
 
 .contact-container {
@@ -108,20 +187,20 @@ section {
 }
 
 .contact-subtitle {
-  @apply text-2xl font-bold mb-6 text-indigo-300;
+  @apply text-2xl font-bold mb-6 text-indigo-600 dark:text-indigo-300;
 }
 
 /* Mapa */
 .map-container {
-  @apply bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 shadow-2xl border border-gray-700;
+  @apply bg-gradient-to-br from-white to-indigo-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-8 shadow-2xl border border-gray-200 dark:border-gray-700 h-full flex flex-col;
 }
 
 .map-wrapper {
-  @apply mb-6 overflow-hidden rounded-2xl shadow-lg;
+  @apply mb-6 overflow-hidden rounded-2xl shadow-lg flex-grow;
 }
 
 .location-info {
-  @apply space-y-3 text-indigo-200;
+  @apply space-y-3 text-gray-600 dark:text-indigo-200;
 }
 
 .location-info p {
@@ -130,11 +209,11 @@ section {
 
 /* Formulario */
 .form-container {
-  @apply bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 shadow-2xl border border-gray-700;
+  @apply bg-gradient-to-br from-white to-indigo-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-8 shadow-2xl border border-gray-200 dark:border-gray-700;
 }
 
 .form-intro {
-  @apply text-indigo-200 mb-8 leading-relaxed;
+  @apply text-gray-600 dark:text-indigo-200 mb-8 leading-relaxed;
 }
 
 .contact-form {
@@ -150,7 +229,7 @@ section {
 }
 
 .form-group label {
-  @apply block text-indigo-300 font-semibold text-sm;
+  @apply block text-indigo-600 dark:text-indigo-300 font-semibold text-sm;
 }
 
 .required {
@@ -159,12 +238,12 @@ section {
 
 .form-group input,
 .form-group textarea {
-  @apply w-full bg-gray-900/50 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-300;
+  @apply w-full bg-white dark:bg-gray-900/50 border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-3 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-300;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
-  @apply bg-gray-900/70 shadow-lg shadow-indigo-500/20;
+  @apply bg-indigo-50 dark:bg-gray-900/70 shadow-lg shadow-indigo-500/20;
 }
 
 .form-group textarea {
@@ -191,13 +270,46 @@ section {
   @apply bg-red-500/20 text-red-400 border border-red-500/50;
 }
 
+/* Alerta personalizada */
+.alert-custom {
+  @apply flex items-start justify-between px-4 py-4 rounded-xl mb-6 border-2 backdrop-blur-sm;
+  animation: slideInFromTop 0.5s ease-out;
+}
+
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.alert-content {
+  @apply flex items-start gap-3;
+}
+
+.alert-icon {
+  @apply text-2xl mt-0.5 flex-shrink-0;
+}
+
+.alert-message {
+  @apply font-medium text-base leading-relaxed;
+}
+
+.alert-close {
+  @apply text-2xl font-bold leading-none opacity-70 hover:opacity-100 transition-opacity cursor-pointer bg-transparent border-0 ml-4 flex-shrink-0;
+}
+
 .submit-button {
   @apply w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-indigo-500/50;
 }
 
 /* Footer */
 .footer {
-  @apply bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white mt-20 border-t border-gray-700;
+  @apply bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-gray-900 dark:text-white mt-20 border-t border-gray-300 dark:border-gray-700 transition-colors duration-300;
 }
 
 .footer-content {
@@ -209,11 +321,11 @@ section {
 }
 
 .footer-title {
-  @apply text-xl font-bold mb-4 text-indigo-300;
+  @apply text-xl font-bold mb-4 text-indigo-600 dark:text-indigo-300;
 }
 
 .footer-text {
-  @apply text-gray-400 text-sm leading-relaxed;
+  @apply text-gray-600 dark:text-gray-400 text-sm leading-relaxed;
 }
 
 .footer-links {
@@ -221,7 +333,7 @@ section {
 }
 
 .footer-links li a {
-  @apply text-gray-400 hover:text-indigo-400 transition-colors duration-300 text-sm;
+  @apply text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300 text-sm;
 }
 
 .footer-social {
@@ -229,9 +341,9 @@ section {
 }
 
 .social-link {
-  @apply text-gray-400 hover:text-indigo-400 transition-colors duration-300 text-sm;
+  @apply text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300 text-sm;
 }
 
 .footer-bottom {
-  @apply text-center border-t border-gray-700 py-6 text-gray-500 text-sm;
+  @apply text-center border-t border-gray-300 dark:border-gray-700 py-6 text-gray-500 dark:text-gray-500 text-sm;
 }

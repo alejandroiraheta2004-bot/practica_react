@@ -1,40 +1,58 @@
+import { FooterSection } from "../footer/FooterSection";
+import { FooterLinks } from "../footer/FooterLinks";
+import { SocialLinks } from "../footer/SocialLinks";
+import { FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
+import { motion } from "framer-motion";
+
 export function Footer() {
+  const quickLinks = [
+    { href: "#inicio", label: "Inicio" },
+    { href: "#servicios", label: "Servicios" },
+    { href: "#contacto", label: "Contacto" },
+    { href: "#nosotros", label: "Términos y Condiciones" }
+  ];
+
+  const socialLinks = [
+    { href: "#", label: "Facebook" },
+    { href: "#", label: "Twitter" },
+    { href: "#", label: "Instagram" }
+  ];
+
   return (
     <footer className="footer">
-      <div className="footer-content">
-        <div className="footer-section">
-          <h4 className="footer-title">Sobre Nosotros</h4>
+      <motion.div 
+        className="footer-content"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <FooterSection title="Sobre Nosotros">
           <p className="footer-text">
             Somos tu mejor opción para compras online. Calidad y confianza desde 2024.
           </p>
-        </div>
+        </FooterSection>
         
-        <div className="footer-section">
-          <h4 className="footer-title">Enlaces Rápidos</h4>
-          <ul className="footer-links">
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#servicios">Servicios</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-            <li><a href="#nosotros">Términos y Condiciones</a></li>
-          </ul>
-        </div>
+        <FooterSection title="Enlaces Rápidos">
+          <FooterLinks links={quickLinks} />
+        </FooterSection>
         
-        <div className="footer-section">
-          <h4 className="footer-title">Contacto</h4>
-          <p className="footer-text">📧 info@miempresa.com</p>
-          <p className="footer-text">📱 +1 234 567 890</p>
-          <p className="footer-text">📍 Ciudad, País</p>
-        </div>
+        <FooterSection title="Contacto">
+          <p className="footer-text">
+            <FaEnvelope className="inline mr-2" /> info@miempresa.com
+          </p>
+          <p className="footer-text">
+            <FaPhone className="inline mr-2" /> +1 234 567 890
+          </p>
+          <p className="footer-text">
+            <FaMapMarkerAlt className="inline mr-2" /> Ciudad, País
+          </p>
+        </FooterSection>
         
-        <div className="footer-section">
-          <h4 className="footer-title">Síguenos</h4>
-          <div className="footer-social">
-            <a href="#" className="social-link">Facebook</a>
-            <a href="#" className="social-link">Twitter</a>
-            <a href="#" className="social-link">Instagram</a>
-          </div>
-        </div>
-      </div>
+        <FooterSection title="Síguenos">
+          <SocialLinks links={socialLinks} />
+        </FooterSection>
+      </motion.div>
       
       <div className="footer-bottom">
         <p>© 2024 Mi Empresa. Todos los derechos reservados.</p>

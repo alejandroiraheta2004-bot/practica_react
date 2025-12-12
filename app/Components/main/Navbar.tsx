@@ -1,22 +1,36 @@
+import { useState } from "react";
+import { Logo } from "../navbar/Logo";
+import { HamburgerButton } from "../navbar/HamburgerButton";
+import { NavMenu } from "../navbar/NavMenu";
+import { FaShoppingBag, FaHome, FaCog, FaEnvelope, FaUsers } from "react-icons/fa";
+import { motion } from "framer-motion";
+
 export function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const menuItems = [
+    { href: "#inicio", label: "Inicio", icon: <FaHome /> },
+    { href: "#servicios", label: "Servicios", icon: <FaCog /> },
+    { href: "#contacto", label: "Contacto", icon: <FaEnvelope /> },
+    { href: "#nosotros", label: "Nosotros", icon: <FaUsers /> }
+  ];
+
   return (
-    <div className="navbar">
+    <motion.div 
+      className="navbar"
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
       <div className="navbar-container">
-        <ul>
-          <li className="navbaritem">
-            <a className="navbar-link" href="#inicio">Inicio</a>
-          </li>
-          <li className="navbaritem">
-            <a className="navbar-link" href="#servicios">Servicios</a>
-          </li>
-          <li className="navbaritem">
-            <a className="navbar-link" href="#contacto">Contacto</a>
-          </li>
-          <li className="navbaritem">
-            <a className="navbar-link" href="#nosotros">Nosotros</a>
-          </li>
-        </ul>
+        <Logo icon={<FaShoppingBag />} title="Mi Tienda" />
+        <HamburgerButton isOpen={isOpen} onClick={toggleMenu} />
+        <NavMenu items={menuItems} isOpen={isOpen} onItemClick={toggleMenu} />
       </div>
-    </div>
+    </motion.div>
   );
 }
