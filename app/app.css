@@ -237,13 +237,79 @@ section {
 }
 
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group select {
   @apply w-full bg-white dark:bg-gray-900/50 border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-3 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-300;
 }
 
 .form-group input:focus,
-.form-group textarea:focus {
+.form-group textarea:focus,
+.form-group select:focus {
   @apply bg-indigo-50 dark:bg-gray-900/70 shadow-lg shadow-indigo-500/20;
+}
+
+/* Estilos especÃ­ficos para select */
+.form-group select {
+  @apply appearance-none cursor-pointer pr-12;
+  background-image: none;
+}
+
+.form-group select:disabled {
+  @apply opacity-50 cursor-not-allowed bg-gray-100 dark:bg-gray-800;
+}
+
+.form-group select option {
+  @apply bg-white dark:bg-gray-800 text-gray-900 dark:text-white py-3 px-4;
+}
+
+.form-group select option:checked {
+  @apply bg-indigo-100 dark:bg-indigo-900;
+}
+
+/* Input group para los nuevos componentes */
+.input-group {
+  @apply space-y-2;
+}
+
+.input-group label {
+  @apply block text-indigo-600 dark:text-indigo-300 font-semibold text-sm;
+}
+
+.form-input {
+  @apply w-full bg-white dark:bg-gray-900/50 border-2 border-gray-300 dark:border-gray-600 rounded-lg px-4 py-3 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-300 text-base;
+}
+
+.form-input:focus {
+  @apply bg-indigo-50 dark:bg-gray-900/70 shadow-lg shadow-indigo-500/30 border-indigo-500;
+}
+
+select.form-input {
+  @apply appearance-none cursor-pointer pr-12;
+  background-image: none;
+}
+
+select.form-input:hover:not(:disabled) {
+  @apply border-indigo-400 dark:border-indigo-500 shadow-md;
+}
+
+select.form-input:disabled {
+  @apply opacity-50 cursor-not-allowed bg-gray-100 dark:bg-gray-800/50;
+}
+
+select.form-input option {
+  @apply bg-white dark:bg-gray-800 text-gray-900 dark:text-white py-3 px-4;
+}
+
+select.form-input option:hover {
+  @apply bg-indigo-50 dark:bg-indigo-900/30;
+}
+
+select.form-input option:checked {
+  @apply bg-indigo-100 dark:bg-indigo-900 font-semibold;
+}
+
+.form-input.border-red-500 {
+  @apply border-red-500 focus:ring-red-500 focus:border-red-500;
 }
 
 .form-group textarea {
@@ -346,4 +412,35 @@ section {
 
 .footer-bottom {
   @apply text-center border-t border-gray-300 dark:border-gray-700 py-6 text-gray-500 dark:text-gray-500 text-sm;
+}
+
+/* Blog Styles */
+.blog-card-header {
+  @apply flex justify-between items-start mb-4 pb-3 border-b border-gray-200 dark:border-gray-700;
+}
+
+.blog-post-id {
+  @apply text-xs font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-100 dark:bg-indigo-900/30 px-3 py-1 rounded-full;
+}
+
+.blog-meta {
+  @apply flex flex-col gap-1 text-xs text-gray-500 dark:text-gray-400;
+}
+
+.blog-meta-item {
+  @apply flex items-center gap-1;
+}
+
+/* Animación del spinner de carga */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
 }

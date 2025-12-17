@@ -4,16 +4,22 @@ import { SectionHeader } from "../../layouts/SectionHeader";
 import { Input } from "../../Components/form/Input";
 import { Textarea } from "../../Components/form/Textarea";
 import { Button } from "../../Components/form/Button";
+import { Select } from "../../Components/form/Select";
 import { Map } from "../../Components/map/Map";
 import { Alert } from "../../Components/ui/Alert";
 import { motion } from "framer-motion";
+import { useElSalvadorLocation } from "../../hooks/useElSalvadorLocation";
 
 export function Contact() {
+  const { getDepartamentoOptions, getMunicipioOptions } = useElSalvadorLocation();
+  
   const [formData, setFormData] = useState({
     name: "",
     lastName: "",
     email: "",
     phone: "",
+    departamento: "",
+    municipio: "",
     message: ""
   });
 
@@ -21,6 +27,8 @@ export function Contact() {
     name: "",
     lastName: "",
     email: "",
+    departamento: "",
+    municipio: "",
     message: ""
   });
 
@@ -29,12 +37,21 @@ export function Contact() {
     text: string;
   } | null>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
+    
+    // Si se cambia el departamento, limpiar el municipio
+    if (name === "departamento") {
+      setFormData(prev => ({
+        ...prev,
+        departamento: value,
+        municipio: ""
+      }));
+    }
     
     if (errors[name as keyof typeof errors]) {
       setErrors(prev => ({
@@ -49,6 +66,8 @@ export function Contact() {
       name: "",
       lastName: "",
       email: "",
+      departamento: "",
+      municipio: "",
       message: ""
     };
 
@@ -75,6 +94,16 @@ export function Contact() {
       isValid = false;
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = "Ingresa un correo electrónico válido";
+      isValid = false;
+    }
+
+    if (!formData.departamento) {
+      newErrors.departamento = "El departamento es obligatorio";
+      isValid = false;
+    }
+
+    if (!formData.municipio) {
+      newErrors.municipio = "El municipio es obligatorio";
       isValid = false;
     }
 
@@ -105,6 +134,8 @@ export function Contact() {
         lastName: "",
         email: "",
         phone: "",
+        departamento: "",
+        municipio: "",
         message: ""
       });
 
@@ -200,6 +231,30 @@ export function Contact() {
               value={formData.phone}
               onChange={handleChange}
             />
+            
+            <div className="form-row">
+              <Select
+                label="Departamento"
+                name="departamento"
+                value={formData.departamento}
+                onChange={handleChange}
+                options={getDepartamentoOptions()}
+                error={errors.departamento}
+                required
+                placeholder="Selecciona un departamento"
+              />
+              <Select
+                label="Municipio"
+                name="municipio"
+                value={formData.municipio}
+                onChange={handleChange}
+                options={getMunicipioOptions(formData.departamento)}
+                error={errors.municipio}
+                required
+                disabled={!formData.departamento}
+                placeholder={formData.departamento ? "Selecciona un municipio" : "Primero selecciona un departamento"}
+              />
+            </div>
             
             <Textarea
               label="Mensaje"

@@ -8,6 +8,7 @@ export function Footer() {
   const quickLinks = [
     { href: "#inicio", label: "Inicio" },
     { href: "#servicios", label: "Servicios" },
+    { href: "#blog", label: "Blog" },
     { href: "#contacto", label: "Contacto" },
     { href: "#nosotros", label: "Términos y Condiciones" }
   ];
@@ -42,10 +43,10 @@ export function Footer() {
             <FaEnvelope className="inline mr-2" /> info@miempresa.com
           </p>
           <p className="footer-text">
-            <FaPhone className="inline mr-2" /> +1 234 567 890
+            <FaPhone className="inline mr-2" /> +503 1234-5678
           </p>
           <p className="footer-text">
-            <FaMapMarkerAlt className="inline mr-2" /> Ciudad, País
+            <FaMapMarkerAlt className="inline mr-2" /> San Salvador, El Salvador
           </p>
         </FooterSection>
         

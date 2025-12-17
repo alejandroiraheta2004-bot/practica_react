@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Logo } from "../navbar/Logo";
 import { HamburgerButton } from "../navbar/HamburgerButton";
 import { NavMenu } from "../navbar/NavMenu";
-import { FaShoppingBag, FaHome, FaCog, FaEnvelope, FaUsers } from "react-icons/fa";
+import { FaShoppingBag, FaHome, FaCog, FaBlog, FaEnvelope, FaUsers } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 export function Navbar() {
@@ -15,6 +15,7 @@ export function Navbar() {
   const menuItems = [
     { href: "#inicio", label: "Inicio", icon: <FaHome /> },
     { href: "#servicios", label: "Servicios", icon: <FaCog /> },
+    { href: "#blog", label: "Blog", icon: <FaBlog /> },
     { href: "#contacto", label: "Contacto", icon: <FaEnvelope /> },
     { href: "#nosotros", label: "Nosotros", icon: <FaUsers /> }
   ];

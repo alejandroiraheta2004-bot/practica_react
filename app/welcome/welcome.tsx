@@ -2,6 +2,7 @@
 import { Navbar } from "../Components/main/Navbar";
 import { Header } from "../Components/main/Header";
 import { Services } from "../content/home/Services";
+import { Blog } from "../content/home/Blog";
 import { Contact } from "../content/home/Contact";
 import { Footer } from "../Components/main/Footer";
 
@@ -13,6 +14,7 @@ export function Welcome() {
       
       <main>
         <Services />
+        <Blog />
         <Contact />
       </main>
 
